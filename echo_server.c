@@ -35,7 +35,7 @@ int main(int argc, char **argv)
 	server.sin_addr.s_addr = INADDR_ANY;
 	bzero(&server.sin_zero, 8);
 
-	if (bind(sock, (struct sockaddr *)&server, data_len) == ERROR)
+	if (bind(sock, (struct sockaddr *)&server, sockaddr_len) == ERROR)
 		fail("bind");
 
 	if ((listen(sock, MAX_CLIENTS)) == ERROR)
@@ -43,7 +43,7 @@ int main(int argc, char **argv)
 
 	while (1)
 	{
-		new = accept(sock, (struct sockaddr *)&client, &data_len);
+		new = accept(sock, (struct sockaddr *)&client, &sockaddr_len);
 		if (new == ERROR)
 			fail("accept");
 
