@@ -1,7 +1,6 @@
 # socket-some-basics
 
-Trying to play around with [socket][0], [bind][1], [accept][2], and some more
-calls.
+Playing around with [socket][0], [bind][1], [accept][2], and some more calls.
 
 I was following the [Socket Programming Basics (TheSecurityTube)][3].
 
