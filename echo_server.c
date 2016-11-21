@@ -20,18 +20,24 @@ void fail(char *prefix) {
 int main(int argc, char **argv)
 {
 	struct sockaddr_in server;
-	struct sockaddr_in client;
-	int sock, new;
 	int sockaddr_len = sizeof(struct sockaddr_in);
-	int data_len;
+	struct sockaddr_in client;
 	char data[MAX_DATA];
+	int sock, new, port;
+	int data_len;
 
 	sock = socket(AF_INET, SOCK_STREAM, 0);
 	if (sock == ERROR)
 		fail("socket: ");
 
+	if (argc < 2) {
+		port = 10000;
+		printf("No port supplied, defaulting to %d\n", port);
+	} else
+		port = atoi(argv[1]);
+
 	server.sin_family = AF_INET;
-	server.sin_port = htons(atoi(argv[1]));
+	server.sin_port = htons(port);
 	server.sin_addr.s_addr = INADDR_ANY;
 	bzero(&server.sin_zero, 8);
 
